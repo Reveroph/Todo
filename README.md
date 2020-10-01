@@ -1,2 +1,2 @@
 # Todo
-Projeto de estudo com JavaSpringBoot e JPA PostgreSQL
+Projeto de estudo com JavaSpringBoot e JPA PostgreSQL.
