@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @RequestMapping("category")
@@ -36,5 +37,21 @@ public class CategoryResource {
             return ResponseEntity.badRequest().body(erro);
         }
         return ResponseEntity.ok(service.deleteCategory(categoryId));
+    }
+
+    @GetMapping(value = "/get/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getCategoryById(@RequestParam Integer categoryId) {
+        if(categoryId == null || categoryId == 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(service.findByIdCategory(categoryId));
+    }
+
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> updateCategory(@RequestBody Category category) {
+        if(Objects.nonNull(category)) {
+            return ResponseEntity.ok(service.updateCategory(category));
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

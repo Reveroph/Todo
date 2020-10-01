@@ -46,4 +46,8 @@ public class CategoryService {
         return repository.findById(categoryId).isPresent() ?
                 repository.findById(categoryId).get() : new Category();
     }
+
+    public Category updateCategory(Category category) {
+        return repository.save(category);
+    }
 }
